@@ -359,7 +359,7 @@ async function updateNowPlayingMessage(chatId, songInfo, messageId, startTime) {
                 reply_markup: getMusicControlButtons()
             });
         } catch (editError) {
-            console.warn(`Mesaj güncellenirken hata (silindi/çok eski?): ${editError.message}`);
+            console.warn(`Mesaj güncellerken hata (silindi/çok eski?): ${editError.message}`);
             clearInterval(intervalId);
             nowPlayingMessage.delete(chatId);
         }
@@ -994,7 +994,7 @@ bot.onText(/\/play (.+)/, async (msg, match) => {
         if (ytdl.validateURL(query)) {
             const info = await ytdl.getInfo(query);
             songInfo = { title: info.videoDetails.title, url: query, source: 'youtube' };
-        } else if (query.includes('https://open.spotify.com/track/3')) {
+        } else if (query.includes('http://open.spotify.com/track/')) {
             const data = await spotifyUrlInfo.getData(query);
             if (data && data.name && data.artists && data.artists.length > 0) {
                 youtubeSearchQuery = `${data.name} ${data.artists[0].name} official audio`;
@@ -1311,7 +1311,7 @@ bot.onText(/\/nowplaying/, async (msg) => {
     let thumbnailUrl = null;
     if (currentSong.source === 'youtube' && currentSong.url) {
          const videoId = ytdl.getURLVideoID(currentSong.url);
-         thumbnailUrl = `https://img.youtube.com/vi/${videoId}/default.jpg`;
+         thumbnailUrl = `http://img.youtube.com/vi/${videoId}/default.jpg`;
     }
 
     let messageText = `🎶 Şu an çalıyor: **${currentSong.title}**\n\n`;
@@ -1355,11 +1355,11 @@ bot.onText(/\/nowplaying/, async (msg) => {
 });
 
 
-bot.onText(/\/volume (\d+)/, async (msg) => {
+bot.onText(/\/volume (\d+)/, async (msg, match) => {
     const chatId = msg.chat.id;
     const userId = msg.from.id;
     const chatType = msg.chat.type;
-    const volume = parseInt(msg.text.split(' ')[1]);
+    const volume = parseInt(match[1]);
 
     if (chatType === 'private') {
         bot.sendMessage(chatId, 'Kanka üzgünüm, ben sadece grup sohbetlerinde çalışıyorum.');
@@ -1668,7 +1668,7 @@ bot.onText(/\/download (.+)/, async (msg) => {
                 try {
                     bot.sendMessage(chatId, 'Şarkı indirildi, şimdi gönderiliyor... 📤');
                     const videoId = ytdl.getURLVideoID(songUrl);
-                    const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/default.jpg`;
+                    const thumbnailUrl = `http://img.youtube.com/vi/${videoId}/default.jpg`;
                     await bot.sendAudio(chatId, outputPath, {
                         title: songTitle,
                         performer: 'Bilinmeyen Sanatçı',
@@ -2115,3 +2115,4 @@ bot.on('polling_error', (error) => {
 
 setImmediate(resetMonthlyStats);
 setInterval(resetMonthlyStats, 1000 * 60 * 60);
+}
