@@ -188,8 +188,24 @@ telegram-muzik-botu/
 
 ---
 
-### ⚖️ Lisans ve Katkı
+## ⚖️ Lisans ve Katkı
 
 Bu proje, **Alp** tarafından ücretsiz ve açık kaynak olarak halka sunulmuştur. Kullanımı ve üzerinde geliştirme yapılması tamamen serbesttir. Emeğe saygı göstermek ve projenin gelişimine katkıda bulunmak için lütfen projeyi beğenmeyi ve yıldızlamayı unutmayın.
 
-Önemli Not: Projenin aslının (kaynak kodunun) izinsiz çoğaltılması ve dağıtılması yasaktır. Lütfen bu kurala uyun.
+**Önemli Not:** Projenin aslının (kaynak kodunun) izinsiz çoğaltılması ve dağıtılması yasaktır. Lütfen bu kurala uyun.
+
+---
+
+## ⚠️ Önemli Bilgilendirme
+
+Bu proje, **deneysel amaçlarla geliştirilmiştir** ve ticari bir ürün olarak tasarlanmamıştır. Halka **ücretsiz olarak sunulmuştur** ve henüz geliştirme aşamasındadır. Bu nedenle, projenin **%100 sorunsuz çalışmadığını** belirtmek isteriz. Karşılaşabileceğiniz hatalar ve eksiklikler, projenin deneysel niteliğinden kaynaklanmaktadır. Anlayışınız için teşekkür ederiz.
+
+---
+
+### MTProto Simülasyonu Hakkında Kısa Not
+
+Botun sesli sohbet özellikleri (müzik çalma ve radyo yayını), Telegram'ın düşük seviyeli **MTProto API**'sini kullanır. Projedeki `playSong` ve `radio` fonksiyonları içinde, ses verilerinin Telegram'a gerçek zamanlı olarak UDP üzerinden gönderilmesi kısmı şimdilik **sadece simüle edilmiştir**. Bu, botun sesli sohbete katılabileceği ancak henüz gerçek anlamda müzik yayını yapamayacağı anlamına gelir. Bu özelliğin tam olarak çalışır hale getirilmesi, ileri düzey ağ programlama bilgisi ve Telegram'ın sesli sohbet protokol detayları üzerine derinlemesine araştırma gerektirmektedir.
+
+---
+
+# Developed by Alp • 2025 '
