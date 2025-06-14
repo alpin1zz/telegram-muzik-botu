@@ -158,6 +158,7 @@ Botu ilk kez başlattığınızda, Telegram hesabınızla bir oturum kurması ge
 
 ## 📁 Proje Dosya Yapısı
 
+```
 telegram-muzik-botu/
 ├── data/
 │   ├── logs.json
@@ -169,6 +170,7 @@ telegram-muzik-botu/
 ├── index.js
 ├── adminServer.js
 └── package.json
+```
 
 ### Açıklamalar
 
